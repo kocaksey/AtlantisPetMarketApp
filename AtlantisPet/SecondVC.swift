@@ -100,6 +100,7 @@ extension SecondVC : UITableViewDataSource, UITableViewDelegate {
         content.image = UIImage(named: Category.init().images[indexPath.row])
         cell.contentConfiguration = content
         return cell
+        //
         
     }
     
