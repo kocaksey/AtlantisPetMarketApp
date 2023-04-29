@@ -24,7 +24,7 @@ class CatMenu: UIViewController  {
         
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 13, bottom: 20, right: 13)
+        layout.sectionInset = UIEdgeInsets(top: 2, left: 13, bottom: 20, right: 13)
         layout.itemSize = CGSize(width: width/2 - 20, height: height/8)
         
         myCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
@@ -36,13 +36,16 @@ class CatMenu: UIViewController  {
         
         view.addSubview(myCollectionView!)
         
-        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTapped))
+        let backButton = UIBarButtonItem(title: "Geri", style: .plain, target: self, action: #selector(backButtonTapped))
+        backButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        // Set the created UIBarButtonItem as the leftBarButtonItem of the navigationItem of the current view controller
         navigationItem.leftBarButtonItem = backButton
         
 
     }
     
     @objc func backButtonTapped() {
+        // Set the target of the UIBarButtonItem to pop the current view controller off the navigation stack
         navigationController?.popViewController(animated: true)
     }
     

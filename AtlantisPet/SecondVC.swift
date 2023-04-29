@@ -15,20 +15,14 @@ class SecondVC:  UITabBarController, UICollectionViewDelegate, UICollectionViewD
 
     var data: [String] = []
 
-    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
-            make.bottom.equalToSuperview().inset(100)
-        }
-        tableView.delegate = self
-        tableView.dataSource = self
+
+
         
-        
+        setupVC()
         
         let height = view.frame.size.height
         let width = view.frame.size.width
@@ -39,40 +33,63 @@ class SecondVC:  UITabBarController, UICollectionViewDelegate, UICollectionViewD
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         
+//        let vc1 = UIViewController()
+//        let vc2 = UIViewController()
+//        let vc3 = UIViewController()
+        
+
+
+//        vc1.view.backgroundColor = .white
+//
+//
+////
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+//        collectionView.backgroundColor = .clear
+//        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+//        vc1.view.addSubview(collectionView)
+//
+//        NSLayoutConstraint.activate([
+//            collectionView.leadingAnchor.constraint(equalTo: vc1.view.leadingAnchor),
+//            collectionView.topAnchor.constraint(equalTo: vc1.view.topAnchor),
+//            collectionView.trailingAnchor.constraint(equalTo: vc1.view.trailingAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: vc1.view.bottomAnchor)
+//        ])
+        
+        
  
         
-
-        let vc1 = UIViewController()
-        vc1.view.backgroundColor = .white
-
+//        vc1.tabBarItem = UITabBarItem(title: "Kategoriler", image: UIImage(systemName: "1.circle"), tag: 0)
+//        vc2.tabBarItem = UITabBarItem(title: "Sepetim", image: UIImage(systemName: "2.circle"), tag: 1)
+//        vc3.tabBarItem = UITabBarItem(title: "Hesabım", image: UIImage(systemName: "3.circle"), tag: 2)
+//        viewControllers = [vc1, vc2, vc3]
 //
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
-        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        vc1.view.addSubview(collectionView)
-
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: vc1.view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: vc1.view.topAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: vc1.view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: vc1.view.bottomAnchor)
-        ])
-        
-        
-        let vc2 = UIViewController()
-        let vc3 = UIViewController()
-        
-        vc1.tabBarItem = UITabBarItem(title: "First", image: UIImage(systemName: "1.circle"), tag: 0)
-        vc2.tabBarItem = UITabBarItem(title: "Second", image: UIImage(systemName: "2.circle"), tag: 1)
-        vc3.tabBarItem = UITabBarItem(title: "Third", image: UIImage(systemName: "3.circle"), tag: 2)
-        viewControllers = [vc1, vc2, vc3]
-
-        selectedIndex = 1
+//
+//
+//        selectedIndex = 1
 
         
         
+    }
+    
+    func templateNavController (unselected : UIImage, selected: UIImage, title : String, viewController: UIViewController, selectedTintColor : UIColor) -> UINavigationController {
+        let nav = UINavigationController(rootViewController: viewController)
+        nav.tabBarItem.image = unselected
+        nav.tabBarItem.selectedImage = selected
+        nav.tabBarItem.title = title
+        nav.navigationBar.prefersLargeTitles = true
+        viewController.navigationItem.title = title
+        tabBar.tintColor = selectedTintColor
+        tabBar.backgroundColor = .systemGray
+        
+        return nav
+        
+   
+    }
+    
+    func setupVC() {
+        viewControllers = [templateNavController(unselected: UIImage(systemName: "house")!, selected: UIImage(systemName: "house.fill")!, title: "Kategoriler", viewController: FirstMenu(),selectedTintColor: .systemBlue), templateNavController(unselected: UIImage(systemName: "basket")!, selected: UIImage(systemName: "basket")!, title: "Sepetim", viewController: CatMenu(),selectedTintColor: .systemBlue), templateNavController(unselected: UIImage(systemName: "person")!, selected: UIImage(systemName: "person.fill")!, title: "Hesabım", viewController: BirdMenu(),selectedTintColor: .systemBlue)]
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -88,46 +105,4 @@ class SecondVC:  UITabBarController, UICollectionViewDelegate, UICollectionViewD
 
 }
 
-extension SecondVC : UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Category.init().categories.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        var content = cell.defaultContentConfiguration()
-        content.text = Category.init().categories[indexPath.row]
-        content.image = UIImage(named: Category.init().images[indexPath.row])
-        cell.contentConfiguration = content
-        return cell
-        //
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let collectionVC = SecondVC()
-        
-        if indexPath.row == 0 {
-            let catVC = CatMenu()
-            catVC.modalPresentationStyle = .fullScreen
-            present(catVC, animated: true)
-        } else if indexPath.row == 1 {
-            let dogVC = DogMenu()
-            dogVC.modalPresentationStyle = .fullScreen
-            present(dogVC, animated: true)
-        } else if indexPath.row == 2 {
-            let birdVC = BirdMenu()
-            birdVC.modalPresentationStyle = .fullScreen
-            present(birdVC, animated: true)
-            
-        }
-        
-        navigationController?.pushViewController(collectionVC, animated: true)
-    }
-    
-    
-}
+

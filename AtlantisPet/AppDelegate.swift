@@ -8,15 +8,37 @@
 import UIKit
 import CoreData
 
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        return true
-    }
+        let vc1 = UIViewController()
+        let vc2 = UIViewController()
+        let vc3 = UIViewController()
+
+        let tabBarController = UITabBarController()
+
+        vc1.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        vc2.tabBarItem = UITabBarItem(title: "Cart", image: UIImage(systemName: "cart"), tag: 1)
+        vc3.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 2)
+
+        let navController1 = UINavigationController(rootViewController: vc1)
+        let navController2 = UINavigationController(rootViewController: vc2)
+        let navController3 = UINavigationController(rootViewController: vc3)
+
+        tabBarController.viewControllers = [navController1, navController2, navController3]
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+
+        return true    }
 
     // MARK: UISceneSession Lifecycle
 

@@ -36,7 +36,9 @@ class ReptileMenu: UIViewController  {
         
         view.addSubview(myCollectionView!)
         
-        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTapped))
+        let backButton = UIBarButtonItem(title: "Geri", style: .plain, target: self, action: #selector(backButtonTapped))
+        backButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        // Set the created UIBarButtonItem as the leftBarButtonItem of the navigationItem of the current view controller
         navigationItem.leftBarButtonItem = backButton
         
 

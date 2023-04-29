@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E3ACA0F29FD2433005ACCF5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E3ACA0E29FD2433005ACCF5 /* SnapKit */; };
+		7E3ACA1129FD396F005ACCF5 /* FirstMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3ACA1029FD396F005ACCF5 /* FirstMenu.swift */; };
 		7E40357829FA9702005D287D /* CatMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40357729FA9702005D287D /* CatMenu.swift */; };
 		7E40357A29FA97E5005D287D /* CatMenuCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40357929FA97E5005D287D /* CatMenuCollectionCell.swift */; };
 		7E40357C29FAA32B005D287D /* DogMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40357B29FAA32B005D287D /* DogMenu.swift */; };
@@ -20,13 +22,13 @@
 		7EE2DDD929F913070008F154 /* AtlantisPet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDD729F913070008F154 /* AtlantisPet.xcdatamodeld */; };
 		7EE2DDDB29F913090008F154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2DDDA29F913090008F154 /* Assets.xcassets */; };
 		7EE2DDDE29F913090008F154 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2DDDC29F913090008F154 /* LaunchScreen.storyboard */; };
-		7EE2DDE729F914970008F154 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7EE2DDE629F914970008F154 /* SnapKit */; };
 		7EE2DDE929F9316E0008F154 /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDE829F9316E0008F154 /* SecondVC.swift */; };
 		7EE2DDEB29F93D5F0008F154 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDEA29F93D5F0008F154 /* MyCollectionViewCell.swift */; };
 		7EE2DDED29F955930008F154 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDEC29F955930008F154 /* Categories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E3ACA1029FD396F005ACCF5 /* FirstMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMenu.swift; sourceTree = "<group>"; };
 		7E40357729FA9702005D287D /* CatMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatMenu.swift; sourceTree = "<group>"; };
 		7E40357929FA97E5005D287D /* CatMenuCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatMenuCollectionCell.swift; sourceTree = "<group>"; };
 		7E40357B29FAA32B005D287D /* DogMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogMenu.swift; sourceTree = "<group>"; };
@@ -52,18 +54,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EE2DDE729F914970008F154 /* SnapKit in Frameworks */,
+				7E3ACA0F29FD2433005ACCF5 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E3ACA0D29FD2433005ACCF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7EE2DDC229F913070008F154 = {
 			isa = PBXGroup;
 			children = (
 				7EE2DDCD29F913070008F154 /* AtlantisPet */,
 				7EE2DDCC29F913070008F154 /* Products */,
+				7E3ACA0D29FD2433005ACCF5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +91,7 @@
 				7EE2DDCE29F913070008F154 /* AppDelegate.swift */,
 				7EE2DDD029F913070008F154 /* SceneDelegate.swift */,
 				7EE2DDD229F913070008F154 /* ViewController.swift */,
+				7E3ACA1029FD396F005ACCF5 /* FirstMenu.swift */,
 				7EE2DDE829F9316E0008F154 /* SecondVC.swift */,
 				7E40357729FA9702005D287D /* CatMenu.swift */,
 				7E40357B29FAA32B005D287D /* DogMenu.swift */,
@@ -116,7 +127,7 @@
 			);
 			name = AtlantisPet;
 			packageProductDependencies = (
-				7EE2DDE629F914970008F154 /* SnapKit */,
+				7E3ACA0E29FD2433005ACCF5 /* SnapKit */,
 			);
 			productName = AtlantisPet;
 			productReference = 7EE2DDCB29F913070008F154 /* AtlantisPet.app */;
@@ -181,6 +192,7 @@
 				7EE2DDED29F955930008F154 /* Categories.swift in Sources */,
 				7EE2DDE929F9316E0008F154 /* SecondVC.swift in Sources */,
 				7E69696A29FAA458002F66D7 /* FishMenu.swift in Sources */,
+				7E3ACA1129FD396F005ACCF5 /* FirstMenu.swift in Sources */,
 				7E69696C29FAA482002F66D7 /* RodentMenu.swift in Sources */,
 				7EE2DDEB29F93D5F0008F154 /* MyCollectionViewCell.swift in Sources */,
 				7EE2DDD929F913070008F154 /* AtlantisPet.xcdatamodeld in Sources */,
@@ -409,7 +421,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7EE2DDE629F914970008F154 /* SnapKit */ = {
+		7E3ACA0E29FD2433005ACCF5 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7EE2DDE529F914970008F154 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
