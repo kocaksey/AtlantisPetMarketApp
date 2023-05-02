@@ -89,7 +89,7 @@ class SecondVC:  UITabBarController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func setupVC() {
-        viewControllers = [templateNavController(unselected: UIImage(systemName: "house")!, selected: UIImage(systemName: "house.fill")!, title: "Kategoriler", viewController: FirstMenu(),selectedTintColor: .systemBlue), templateNavController(unselected: UIImage(systemName: "basket")!, selected: UIImage(systemName: "basket")!, title: "Sepetim", viewController: CatMenu(),selectedTintColor: .systemBlue), templateNavController(unselected: UIImage(systemName: "person")!, selected: UIImage(systemName: "person.fill")!, title: "Hesabım", viewController: BirdMenu(),selectedTintColor: .systemBlue)]
+        viewControllers = [templateNavController(unselected: UIImage(systemName: "house")!, selected: UIImage(systemName: "house.fill")!, title: "Kategoriler", viewController: FirstMenu(),selectedTintColor: .systemBlue), templateNavController(unselected: UIImage(systemName: "basket")!, selected: UIImage(systemName: "basket")!, title: "Sepetim", viewController: BasketVC(),selectedTintColor: .systemBlue), templateNavController(unselected: UIImage(systemName: "person")!, selected: UIImage(systemName: "person.fill")!, title: "Hesabım", viewController: BirdMenu(),selectedTintColor: .systemBlue)]
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

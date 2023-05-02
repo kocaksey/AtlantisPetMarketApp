@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         // Create a new instance of UINavigationController with your root view controller as the parameter
-        let navigationController = UINavigationController(rootViewController: SecondVC())
+        let navigationController = UINavigationController(rootViewController: FirstMenu())
 
         // Create a new UIWindow with the windowScene parameter
         let window = UIWindow(windowScene: windowScene)
