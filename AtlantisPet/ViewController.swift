@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     let atlantisImage = UIImageView()
     let phoneNumberTextField = UITextField()
     let verificationCodeTextField = UITextField()
+    var userNumber = String()
+    var completionHandler: ((String?)-> ())?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,8 @@ class ViewController: UIViewController {
     // In your login view controller
     @objc func sendVerificationCode() {
         guard let phoneNumber = phoneNumberTextField.text else { return }
+        userNumber = phoneNumberTextField.text!
+        completionHandler?(phoneNumberTextField.text)
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -109,6 +114,8 @@ class ViewController: UIViewController {
         let secondVC = SecondVC()
         secondVC.modalPresentationStyle = .fullScreen
         present(secondVC, animated: true)
+        
+
         
     }
 
