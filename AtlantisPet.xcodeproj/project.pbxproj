@@ -25,6 +25,9 @@
 		7E69696A29FAA458002F66D7 /* FishMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69696929FAA458002F66D7 /* FishMenu.swift */; };
 		7E69696C29FAA482002F66D7 /* RodentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69696B29FAA482002F66D7 /* RodentMenu.swift */; };
 		7E69696E29FAA491002F66D7 /* ReptileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69696D29FAA491002F66D7 /* ReptileMenu.swift */; };
+		7EBC0B382A028C3900DB3386 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B372A028C3900DB3386 /* MapVC.swift */; };
+		7EBC0B3A2A02A11900DB3386 /* AccountEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B392A02A11900DB3386 /* AccountEditVC.swift */; };
+		7EBC0B3C2A03E55600DB3386 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B3B2A03E55600DB3386 /* CustomAnnotation.swift */; };
 		7EE2DDCF29F913070008F154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDCE29F913070008F154 /* AppDelegate.swift */; };
 		7EE2DDD129F913070008F154 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDD029F913070008F154 /* SceneDelegate.swift */; };
 		7EE2DDD329F913070008F154 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDD229F913070008F154 /* ViewController.swift */; };
@@ -48,6 +51,9 @@
 		7E69696929FAA458002F66D7 /* FishMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishMenu.swift; sourceTree = "<group>"; };
 		7E69696B29FAA482002F66D7 /* RodentMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RodentMenu.swift; sourceTree = "<group>"; };
 		7E69696D29FAA491002F66D7 /* ReptileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReptileMenu.swift; sourceTree = "<group>"; };
+		7EBC0B372A028C3900DB3386 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		7EBC0B392A02A11900DB3386 /* AccountEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditVC.swift; sourceTree = "<group>"; };
+		7EBC0B3B2A03E55600DB3386 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		7EE2DDCB29F913070008F154 /* AtlantisPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtlantisPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE2DDCE29F913070008F154 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EE2DDD029F913070008F154 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 				7E3ACA1029FD396F005ACCF5 /* FirstMenu.swift */,
 				7E25636229FD4156007512F6 /* BasketVC.swift */,
 				7E4177B62A0123D6008412F8 /* AccountVC.swift */,
+				7EBC0B392A02A11900DB3386 /* AccountEditVC.swift */,
+				7EBC0B372A028C3900DB3386 /* MapVC.swift */,
 				7EE2DDE829F9316E0008F154 /* SecondVC.swift */,
 				7E40357729FA9702005D287D /* CatMenu.swift */,
 				7E40357B29FAA32B005D287D /* DogMenu.swift */,
@@ -122,6 +130,7 @@
 				7E40357929FA97E5005D287D /* CatMenuCollectionCell.swift */,
 				7EE2DDEA29F93D5F0008F154 /* MyCollectionViewCell.swift */,
 				7EE2DDEC29F955930008F154 /* Categories.swift */,
+				7EBC0B3B2A03E55600DB3386 /* CustomAnnotation.swift */,
 				7EE2DDDA29F913090008F154 /* Assets.xcassets */,
 				7EE2DDDC29F913090008F154 /* LaunchScreen.storyboard */,
 				7EE2DDDF29F913090008F154 /* Info.plist */,
@@ -219,9 +228,12 @@
 				7E40357C29FAA32B005D287D /* DogMenu.swift in Sources */,
 				7E69696E29FAA491002F66D7 /* ReptileMenu.swift in Sources */,
 				7EE2DDED29F955930008F154 /* Categories.swift in Sources */,
+				7EBC0B3A2A02A11900DB3386 /* AccountEditVC.swift in Sources */,
 				7EE2DDE929F9316E0008F154 /* SecondVC.swift in Sources */,
 				7E69696A29FAA458002F66D7 /* FishMenu.swift in Sources */,
+				7EBC0B3C2A03E55600DB3386 /* CustomAnnotation.swift in Sources */,
 				7E3ACA1129FD396F005ACCF5 /* FirstMenu.swift in Sources */,
+				7EBC0B382A028C3900DB3386 /* MapVC.swift in Sources */,
 				7E69696C29FAA482002F66D7 /* RodentMenu.swift in Sources */,
 				7EE2DDEB29F93D5F0008F154 /* MyCollectionViewCell.swift in Sources */,
 				7EE2DDD929F913070008F154 /* AtlantisPet.xcdatamodeld in Sources */,
@@ -377,7 +389,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,7 +417,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
