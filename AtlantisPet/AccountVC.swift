@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 class AccountVC: UIViewController{
     
@@ -21,6 +22,8 @@ class AccountVC: UIViewController{
 
         
     }
+    
+ 
     func setupUI(){
         userNumber.text = "telefon no"
         view.addSubview(userNumber)
@@ -62,11 +65,16 @@ class AccountVC: UIViewController{
         
     }
     
+
+    
     @objc func openEditVC(){
         let editVC = AccountEditVC()
         present(editVC, animated: true)
         
     }
+    
+
+
 
 
     

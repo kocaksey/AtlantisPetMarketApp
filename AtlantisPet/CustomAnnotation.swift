@@ -8,13 +8,31 @@
 import Foundation
 import MapKit
 
-
-class CustomAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var title: String?
+class CustomAnnotation: MKAnnotationView {
     
-    init(coordinate: CLLocationCoordinate2D, title: String?) {
-        self.coordinate = coordinate
-        self.title = title
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupView()
+    }
+    
+    private func setupView() {
+        // Set a custom image for the annotation view
+        image = UIImage(named: "placeholder")
+        
+        // Set the size of the annotation view
+        frame.size = CGSize(width: 50, height: 50)
+        
+        // Enable dragging
+        isDraggable = true
+        
+        // Set the center offset if needed
+        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
     }
 }
+
+

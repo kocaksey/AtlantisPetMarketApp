@@ -9,22 +9,44 @@ import UIKit
 import SnapKit
 import MapKit
 import CoreData
+import CoreLocation
 
 class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    let geocoder = CLGeocoder()
+    var selectedLocation: CLLocation?
+    var selectedAddress: String?
+    let annotation = MKPointAnnotation()
+    let centerAnnotation = MKPointAnnotation()
+
+
     
     let locationManager = CLLocationManager()
     let mapView = MKMapView()
     var chosenLocation: CLLocationCoordinate2D?
     var chosenAddress: String?
 
-
-
-
     var userNumber = UILabel()
+    
+    // In your ViewController class
+
+
+
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        view.backgroundColor = .white
+        view.addSubview(mapView)
+        
+        mapView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        setupOKButton()
+
+
+        addDraggableAnnotation(at: mapView.centerCoordinate)
+        addCenterAnnotation()
+
         
         // Set up location manager
         locationManager.delegate = self
@@ -35,37 +57,60 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         // Set up map view
         mapView.delegate = self
         mapView.showsUserLocation = true
-        mapView.frame = view.bounds
-        view.addSubview(mapView)
+//        mapView.frame = view.bounds
         
-        view.backgroundColor = .white
-        view.addSubview(userNumber)
+//        view.addSubview(userNumber)
 
-        userNumber.textAlignment = .center
-        let vc = ViewController()
-        vc.completionHandler = {text in
-            self.userNumber.text = text
-        }
-        userNumber.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(200)
-            make.leading.equalToSuperview().offset(100)
-            make.trailing.equalToSuperview().inset(100)
-            make.height.equalTo(50)
-        }
+
+//        userNumber.textAlignment = .center
+//        let vc = ViewController()
+//        vc.completionHandler = {text in
+//            self.userNumber.text = text
+//        }
+//        userNumber.snp.makeConstraints { make in
+//            make.top.equalToSuperview().offset(200)
+//            make.leading.equalToSuperview().offset(100)
+//            make.trailing.equalToSuperview().inset(100)
+//            make.height.equalTo(50)
+//        }
         
-        let okButton = UIButton(type: .system)
-        okButton.setTitle("OK", for: .normal)
-        okButton.translatesAutoresizingMaskIntoConstraints = false
-        okButton.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
-        view.addSubview(okButton)
-        
-        // Set up constraints for the "OK" button
-        NSLayoutConstraint.activate([
-            okButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            okButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-        ])
+
 
     }
+    
+
+
+    func setupOKButton() {
+        let okButton = UIButton(type: .system)
+        okButton.setTitle("OK", for: .normal)
+        okButton.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
+        okButton.frame = CGRect(x: view.bounds.width - 70, y: view.bounds.height - 100, width: 50, height: 30)
+        mapView.addSubview(okButton)
+    }
+
+    
+    
+    func saveLocationToCoreData(latitude: Double, longitude: Double, address: String) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let locationEntity = NSEntityDescription.entity(forEntityName: "Location", in: context)!
+        let location = NSManagedObject(entity: locationEntity, insertInto: context)
+        
+        location.setValue(latitude, forKey: "latitude")
+        location.setValue(longitude, forKey: "longitude")
+        location.setValue(address, forKey: "address")
+        
+        do {
+            try context.save()
+            print("Location and address saved to Core Data")
+//            dismiss(animated: true)
+        } catch let error as NSError {
+            print("Could not save location and address. \(error), \(error.userInfo)")
+        }
+    }
+
+
     func getAddress(from location: CLLocation, completion: @escaping (String?, Error?) -> Void) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
@@ -79,17 +124,60 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             }
         }
     }
-    
     @objc func okButtonTapped() {
-        if let chosenLocation = chosenLocation {
-            print("Chosen location coordinates: \(chosenLocation.latitude), \(chosenLocation.longitude)")
-            dismiss(animated: true)
-        } else {
-            print("No chosen location")
-        }
+        let centerCoordinate = mapView.centerCoordinate
+        let location = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
         
-        // Perform any other actions required when the "OK" button is tapped
+        // Reverse geocode the coordinate
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                print("Error reverse geocoding: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placemark = placemarks?.first {
+                // Get the address from the placemark
+                let address = "\(placemark.name ?? ""), \(placemark.locality ?? ""), \(placemark.administrativeArea ?? ""), \(placemark.postalCode ?? ""), \(placemark.country ?? "")"
+                
+                // Save location and address to Core Data
+                self.saveLocationToCoreData(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude, address: address)
+            }
+        }
     }
+
+
+    
+
+    func updateLocationInformation() {
+        let centerCoordinate = mapView.centerCoordinate
+        annotation.coordinate = centerCoordinate
+        
+        let location = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
+        
+        // Reverse geocode the coordinate
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                print("Error reverse geocoding: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placemark = placemarks?.first {
+                // Get the address from the placemark
+                let address = "\(placemark.name ?? ""), \(placemark.locality ?? ""), \(placemark.administrativeArea ?? ""), \(placemark.postalCode ?? ""), \(placemark.country ?? "")"
+                
+                // Update the selectedLocation and selectedAddress variables
+                self.selectedLocation = location
+                self.selectedAddress = address
+                
+                print("Selected location: \(location)")
+                print("Selected address: \(address)")
+            }
+        }
+    }
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        mapView.removeAnnotation(centerAnnotation)
+    }
+
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
@@ -99,6 +187,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         mapView.setRegion(region, animated: true)
         
         // Add a draggable annotation at the user's location
+        
+        
         addDraggableAnnotation(at: location.coordinate)
         
         // Stop updating the user's location to prevent constant updates
@@ -110,26 +200,24 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func addDraggableAnnotation(at coordinate: CLLocationCoordinate2D) {
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = coordinate
-//        annotation.title = "Drag to change location"
-//        mapView.addAnnotation(annotation)
-        
-        let annotation = CustomAnnotation(coordinate: coordinate, title: "Drag to change location")
+        annotation.coordinate = coordinate
+        annotation.title = "Drag to change location"
         mapView.addAnnotation(annotation)
+    
     }
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil // Use the default view for the user's location
-        }
-        
-        let reuseIdentifier = "DraggableAnnotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+    func addCenterAnnotation() {
+        centerAnnotation.coordinate = mapView.centerCoordinate
+        centerAnnotation.title = "Drag to change location"
+        mapView.addAnnotation(centerAnnotation)
+    }
+
+func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    if annotation is MKPointAnnotation {
+        let reuseIdentifier = "CustomAnnotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? CustomAnnotation
         
         if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.canShowCallout = true
-            annotationView?.isDraggable = true
+            annotationView = CustomAnnotation(annotation: annotation, reuseIdentifier: reuseIdentifier)
         } else {
             annotationView?.annotation = annotation
         }
@@ -137,6 +225,17 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         return annotationView
     }
     
+    return nil
+}
+
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        mapView.addAnnotation(centerAnnotation)
+
+        updateLocationInformation()
+
+    }
+
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
         if newState == .ending {
             let droppedCoordinate = view.annotation?.coordinate
@@ -160,19 +259,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             print("No chosen location")
         }
     }
-    
-    
-
-
-    
-
-
-
-    
-
-    
-
-
 
 }
+
+
 

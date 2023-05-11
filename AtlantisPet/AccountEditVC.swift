@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AccountEditVC: UIViewController {
     
@@ -43,8 +44,40 @@ class AccountEditVC: UIViewController {
     }
     @objc func openMap(){
         let mapVC = MapVC()
+//        mapVC.modalPresentationStyle = .fullScreen
         present(mapVC, animated: true)
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        fetchSavedLocations()
+
+    }
+    
+    func fetchSavedLocations() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Location>(entityName: "Location")
+        
+        do {
+            let locations = try context.fetch(fetchRequest)
+            if locations.isEmpty {
+                print("No saved locations")
+            } else {
+                for location in locations {
+                    print("Saved location: \(location.latitude), \(location.longitude), \(location.address ?? "")")
+                }
+                let addressInfo = UILabel()
+                addressInfo.text = "Adres Seçildi."
+                addressInfo.snp.makeConstraints { make in
+                    make.centerX.equalToSuperview()
+                    make.top.equalTo(addressBtn.snp.bottom).offset(50)
+                    make.width.equalTo(50)
+                }
+                
+            }
+        } catch let error {
+            print("Error fetching saved locations: \(error.localizedDescription)")
+        }
     }
     
 
