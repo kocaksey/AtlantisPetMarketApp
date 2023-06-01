@@ -30,6 +30,11 @@
 		7EBC0B3C2A03E55600DB3386 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B3B2A03E55600DB3386 /* CustomAnnotation.swift */; };
 		7EBC0B3F2A0529F400DB3386 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B3D2A0529F400DB3386 /* Location+CoreDataClass.swift */; };
 		7EBC0B402A0529F400DB3386 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B3E2A0529F400DB3386 /* Location+CoreDataProperties.swift */; };
+		7EBC0B422A24D94300DB3386 /* DataCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B412A24D94300DB3386 /* DataCollectionVC.swift */; };
+		7EBC0B472A24E60E00DB3386 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 7EBC0B462A24E60E00DB3386 /* SwiftCSV */; };
+		7EBC0B4D2A24EB1200DB3386 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B4C2A24EB1200DB3386 /* DataModel.swift */; };
+		7EBC0B4F2A2506E800DB3386 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EBC0B4E2A2506E700DB3386 /* data.json */; };
+		7EBC0B542A260C5400DB3386 /* CustomProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC0B532A260C5400DB3386 /* CustomProductCell.swift */; };
 		7EE2DDCF29F913070008F154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDCE29F913070008F154 /* AppDelegate.swift */; };
 		7EE2DDD129F913070008F154 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDD029F913070008F154 /* SceneDelegate.swift */; };
 		7EE2DDD329F913070008F154 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2DDD229F913070008F154 /* ViewController.swift */; };
@@ -58,6 +63,10 @@
 		7EBC0B3B2A03E55600DB3386 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		7EBC0B3D2A0529F400DB3386 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7EBC0B3E2A0529F400DB3386 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7EBC0B412A24D94300DB3386 /* DataCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectionVC.swift; sourceTree = "<group>"; };
+		7EBC0B4C2A24EB1200DB3386 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		7EBC0B4E2A2506E700DB3386 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		7EBC0B532A260C5400DB3386 /* CustomProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProductCell.swift; sourceTree = "<group>"; };
 		7EE2DDCB29F913070008F154 /* AtlantisPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtlantisPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE2DDCE29F913070008F154 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EE2DDD029F913070008F154 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E4177AB2A0103C3008412F8 /* FirebaseAnalytics in Frameworks */,
+				7EBC0B472A24E60E00DB3386 /* SwiftCSV in Frameworks */,
 				7E4177AD2A0103C3008412F8 /* FirebaseAuth in Frameworks */,
 				7E4177AF2A0103C3008412F8 /* FirebaseDatabase in Frameworks */,
 				7E4177B12A0103C3008412F8 /* FirebaseFirestore in Frameworks */,
@@ -121,10 +131,14 @@
 				7EE2DDCE29F913070008F154 /* AppDelegate.swift */,
 				7EE2DDD029F913070008F154 /* SceneDelegate.swift */,
 				7EE2DDD229F913070008F154 /* ViewController.swift */,
+				7EBC0B412A24D94300DB3386 /* DataCollectionVC.swift */,
+				7EBC0B532A260C5400DB3386 /* CustomProductCell.swift */,
+				7EBC0B4C2A24EB1200DB3386 /* DataModel.swift */,
 				7E3ACA1029FD396F005ACCF5 /* FirstMenu.swift */,
 				7E25636229FD4156007512F6 /* BasketVC.swift */,
 				7E4177B62A0123D6008412F8 /* AccountVC.swift */,
 				7EBC0B392A02A11900DB3386 /* AccountEditVC.swift */,
+				7EBC0B4E2A2506E700DB3386 /* data.json */,
 				7EBC0B372A028C3900DB3386 /* MapVC.swift */,
 				7EE2DDE829F9316E0008F154 /* SecondVC.swift */,
 				7E40357729FA9702005D287D /* CatMenu.swift */,
@@ -170,6 +184,7 @@
 				7E4177B02A0103C3008412F8 /* FirebaseFirestore */,
 				7E4177B22A0103C3008412F8 /* FirebaseStorage */,
 				7E4177B42A01043C008412F8 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				7EBC0B462A24E60E00DB3386 /* SwiftCSV */,
 			);
 			productName = AtlantisPet;
 			productReference = 7EE2DDCB29F913070008F154 /* AtlantisPet.app */;
@@ -202,6 +217,7 @@
 			packageReferences = (
 				7EE2DDE529F914970008F154 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7E4177A92A0103C3008412F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7EBC0B452A24E60E00DB3386 /* XCRemoteSwiftPackageReference "SwiftCSV" */,
 			);
 			productRefGroup = 7EE2DDCC29F913070008F154 /* Products */;
 			projectDirPath = "";
@@ -220,6 +236,7 @@
 				7EE2DDDE29F913090008F154 /* LaunchScreen.storyboard in Resources */,
 				7EE2DDDB29F913090008F154 /* Assets.xcassets in Resources */,
 				7E4177A82A010315008412F8 /* GoogleService-Info.plist in Resources */,
+				7EBC0B4F2A2506E800DB3386 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +252,7 @@
 				7EBC0B402A0529F400DB3386 /* Location+CoreDataProperties.swift in Sources */,
 				7E40357C29FAA32B005D287D /* DogMenu.swift in Sources */,
 				7E69696E29FAA491002F66D7 /* ReptileMenu.swift in Sources */,
+				7EBC0B4D2A24EB1200DB3386 /* DataModel.swift in Sources */,
 				7EE2DDED29F955930008F154 /* Categories.swift in Sources */,
 				7EBC0B3A2A02A11900DB3386 /* AccountEditVC.swift in Sources */,
 				7EE2DDE929F9316E0008F154 /* SecondVC.swift in Sources */,
@@ -243,6 +261,7 @@
 				7E3ACA1129FD396F005ACCF5 /* FirstMenu.swift in Sources */,
 				7EBC0B382A028C3900DB3386 /* MapVC.swift in Sources */,
 				7E69696C29FAA482002F66D7 /* RodentMenu.swift in Sources */,
+				7EBC0B422A24D94300DB3386 /* DataCollectionVC.swift in Sources */,
 				7EE2DDEB29F93D5F0008F154 /* MyCollectionViewCell.swift in Sources */,
 				7EE2DDD929F913070008F154 /* AtlantisPet.xcdatamodeld in Sources */,
 				7E40357829FA9702005D287D /* CatMenu.swift in Sources */,
@@ -250,6 +269,7 @@
 				7E25636329FD4156007512F6 /* BasketVC.swift in Sources */,
 				7EE2DDCF29F913070008F154 /* AppDelegate.swift in Sources */,
 				7E40357A29FA97E5005D287D /* CatMenuCollectionCell.swift in Sources */,
+				7EBC0B542A260C5400DB3386 /* CustomProductCell.swift in Sources */,
 				7E4177B72A0123D6008412F8 /* AccountVC.swift in Sources */,
 				7EE2DDD129F913070008F154 /* SceneDelegate.swift in Sources */,
 			);
@@ -471,6 +491,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		7EBC0B452A24E60E00DB3386 /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.1;
+			};
+		};
 		7EE2DDE529F914970008F154 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -516,6 +544,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E4177A92A0103C3008412F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		7EBC0B462A24E60E00DB3386 /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EBC0B452A24E60E00DB3386 /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
 		};
 /* End XCSwiftPackageProductDependency section */
 

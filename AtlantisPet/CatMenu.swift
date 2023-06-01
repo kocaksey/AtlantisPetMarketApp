@@ -57,13 +57,17 @@ class CatMenu: UIViewController  {
 
 extension CatMenu : UICollectionViewDelegate {
     
+    
+    
+    
+    
+
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let vc = DetailsVC()
-//        present(vc, animated: true)
-//        vc.appImage.image = appArray[indexPath.row].image
-//        vc.appName.text = appArray[indexPath.row].appName
-//        vc.category.text = appArray[indexPath.row].category
-//        vc.url.text = appArray[indexPath.row].url
+
+        
+        let dataVc = DataCollectionVC()
+        present(dataVc, animated: true)
     }
  
     
@@ -79,6 +83,11 @@ extension CatMenu : UICollectionViewDataSource {
         myCell.nameLabel.text = appArray[indexPath.row]
         return myCell
     }
+    
+    
+    
+    
+    
     
     
     

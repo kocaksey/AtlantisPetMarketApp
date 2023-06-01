@@ -69,6 +69,7 @@ class AccountVC: UIViewController{
     
     @objc func openEditVC(){
         let editVC = AccountEditVC()
+        editVC.modalPresentationStyle = .fullScreen
         present(editVC, animated: true)
         
     }

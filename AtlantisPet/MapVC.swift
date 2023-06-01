@@ -35,14 +35,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        view.backgroundColor = .white
-        view.addSubview(mapView)
-        
-        mapView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-        setupOKButton()
-
 
         addDraggableAnnotation(at: mapView.centerCoordinate)
         addCenterAnnotation()
@@ -57,38 +49,50 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         // Set up map view
         mapView.delegate = self
         mapView.showsUserLocation = true
-//        mapView.frame = view.bounds
+        mapView.frame = view.bounds
+        view.addSubview(mapView)
         
-//        view.addSubview(userNumber)
+        view.backgroundColor = .white
+        view.addSubview(userNumber)
 
-
-//        userNumber.textAlignment = .center
-//        let vc = ViewController()
-//        vc.completionHandler = {text in
-//            self.userNumber.text = text
-//        }
-//        userNumber.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(200)
-//            make.leading.equalToSuperview().offset(100)
-//            make.trailing.equalToSuperview().inset(100)
-//            make.height.equalTo(50)
-//        }
+        userNumber.textAlignment = .center
+        let vc = ViewController()
+        vc.completionHandler = {text in
+            self.userNumber.text = text
+        }
+        userNumber.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(200)
+            make.leading.equalToSuperview().offset(100)
+            make.trailing.equalToSuperview().inset(100)
+            make.height.equalTo(50)
+        }
         
-
-
-    }
-    
-
-
-    func setupOKButton() {
         let okButton = UIButton(type: .system)
         okButton.setTitle("OK", for: .normal)
+        okButton.translatesAutoresizingMaskIntoConstraints = false
         okButton.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
-        okButton.frame = CGRect(x: view.bounds.width - 70, y: view.bounds.height - 100, width: 50, height: 30)
-        mapView.addSubview(okButton)
-    }
+        view.addSubview(okButton)
+        
+        // Set up constraints for the "OK" button
+        NSLayoutConstraint.activate([
+            okButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            okButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+        ])
 
-    
+    }
+    func getAddress(from location: CLLocation, completion: @escaping (String?, Error?) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                completion(nil, error)
+            } else if let placemark = placemarks?.first {
+                let address = [placemark.subThoroughfare, placemark.thoroughfare, placemark.locality, placemark.administrativeArea, placemark.postalCode, placemark.country].compactMap({ $0 }).joined(separator: ", ")
+                completion(address, nil)
+            } else {
+                completion(nil, nil)
+            }
+        }
+    }
     
     func saveLocationToCoreData(latitude: Double, longitude: Double, address: String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -104,26 +108,14 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         do {
             try context.save()
             print("Location and address saved to Core Data")
-//            dismiss(animated: true)
+            dismiss(animated: true)
+            
         } catch let error as NSError {
             print("Could not save location and address. \(error), \(error.userInfo)")
         }
     }
 
-
-    func getAddress(from location: CLLocation, completion: @escaping (String?, Error?) -> Void) {
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            if let error = error {
-                completion(nil, error)
-            } else if let placemark = placemarks?.first {
-                let address = [placemark.subThoroughfare, placemark.thoroughfare, placemark.locality, placemark.administrativeArea, placemark.postalCode, placemark.country].compactMap({ $0 }).joined(separator: ", ")
-                completion(address, nil)
-            } else {
-                completion(nil, nil)
-            }
-        }
-    }
+    
     @objc func okButtonTapped() {
         let centerCoordinate = mapView.centerCoordinate
         let location = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
@@ -141,12 +133,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                 
                 // Save location and address to Core Data
                 self.saveLocationToCoreData(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude, address: address)
+                NotificationCenter.default.post(name: .addressUpdated, object: nil, userInfo: ["address": address])
+
             }
         }
     }
-
-
-    
 
     func updateLocationInformation() {
         let centerCoordinate = mapView.centerCoordinate
@@ -260,6 +251,10 @@ func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnota
         }
     }
 
+}
+
+extension Notification.Name {
+    static let addressUpdated = Notification.Name("addressUpdated")
 }
 
 

@@ -8,6 +8,8 @@
 import UIKit
 
 class DogMenu: UIViewController  {
+    
+    
 
     
     var appArray = ["Mamalar","Konserveler","Kum","Ödül Mamaları","Tasmalar","Çantalar","Tuvalet","Tırmalama","Oyuncaklar"]
@@ -17,6 +19,7 @@ class DogMenu: UIViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         let height = view.frame.size.height
         let width = view.frame.size.width
